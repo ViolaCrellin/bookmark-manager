@@ -13,8 +13,10 @@ include DataMapper::Resource
     end
   end
 
-
-
+  def password=(password)
+    @password = password
+    self.password_digest = BCrypt::Password.create(password)
+  end
 
   attr_reader :password
   attr_accessor :password_confirmation
@@ -24,15 +26,13 @@ include DataMapper::Resource
   validates_format_of :email, as: :email_address
 
 
-    property :id, Serial
-    property :user_name, String
-    property :email, String, required: true, unique: true
-    property :password_digest, Text
+  property :id, Serial
+  property :user_name, String
+  property :email, String, required: true, unique: true
+  property :password_digest, Text
 
-    def password=(password)
-      @password = password
-      self.password_digest = BCrypt::Password.create(password)
-    end
+  has n, :links
+  has n, :tags through: Link
 
 
 end

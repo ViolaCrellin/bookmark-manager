@@ -31,11 +31,10 @@ class BookmarkManager < Sinatra::Base
 
     if @user.nil? && User.last(user_name: params[:existing_user_name])
        flash.now[:notice_user_credentials] =  "Computer says no"
-       erb :'users/sign_up'
     else
       flash.now[:notice_user_credentials] =  "Who are you?"
-      erb :'users/sign_up'
     end
+    erb :'users/sign_up'
   end
 
 
@@ -75,7 +74,10 @@ class BookmarkManager < Sinatra::Base
   post '/links' do
     link = Link.new(url: params[:url], title: params[:title])
     params[:tags].split(", ").each {|tag| link.tags << Tag.create(name: tag)}
-    link.save
+    session_user
+    require 'pry'; binding.pry
+    session_user.links << link.save
+    # require 'pry'; binding.pry
     redirect '/links'
   end
 
