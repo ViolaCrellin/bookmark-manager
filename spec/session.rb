@@ -22,12 +22,10 @@ module SessionHelpers
 
   def sign_up_two
     within 'div.wrapper' do
-      within 'div#notice' do
-        fill_in 'password', with: 'password123'
-        fill_in 'password_confirmation', with: 'password123'
-          within 'label.submitform' do
-          click_button('Try Again')
-        end
+      fill_in 'password', with: 'password123'
+      fill_in 'password_confirmation', with: 'password123'
+        within 'label.try_again' do
+        click_button('Try Again')
       end
     end
   end

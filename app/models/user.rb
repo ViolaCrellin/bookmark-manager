@@ -14,8 +14,6 @@ include DataMapper::Resource
   end
 
 
-
-
   attr_reader :password
   attr_accessor :password_confirmation
 

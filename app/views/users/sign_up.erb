@@ -34,46 +34,23 @@
         <label for="submit" class="submitform">
           <input type="submit" value="Sign In">
         </label>
-
       </form>
     </div>
 
-  <% if flash[:notice].nil? %>
-  <form action="/sign_up" method="post" >
-    <label for="user_name">
-      User Name:
-      <input type="text" name="user_name" maxlength="45">
-    </label>
-    <label for="email">
-      Email:
-      <input type="email" name="email" required>
-    </label>
-    <label for="password">
-      Password:
-      <input type="password" name="password">
-    </label>
-    <label for="password_confirmation">
-      Confirm Password:
-      <input type="password" name="password_confirmation">
-    </label>
-    <label for="submit" class="submitform">
-      <input type="submit" value="Sign Up">
-    </label>
-  </form>
-  <% end %>
 
-  <% if flash[:notice] || flash[:notice_email] %>
-    <div id="notice" >
+
+
+    <div>
       <%= flash[:notice] %>
       <%= flash[:notice_email] %>
         <form action="/sign_up" method="post">
           <label for="user_name">
             User Name:
-            <input type="text" name="user_name" value="<%= @user.user_name%>">
+            <input type="text" name="user_name" value="<%= @new_user.user_name %>">
           </label>
           <label for="email">
             Email:
-            <input type="text" name="email" value="<%= @user.email%>">
+            <input type="text" name="email" value="<%= @new_user.email%>">
           </label>
           <label for="password">
             Password:
@@ -84,11 +61,16 @@
             <input type="password" name="password_confirmation">
           </label>
           <label for="submit" class="submitform">
+          <input type="submit" value="Sign Up">
+        </label>
+        <% if flash[:notice] || flash[:notice_email] %>
+        <label for="submit" class="try_again">
           <input type="submit" value="Try Again">
         </label>
+        <% end %>
         </form>
     </div>
-  <% end %>
+
   </div>
   </body>
 </html>

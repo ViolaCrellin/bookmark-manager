@@ -4,3 +4,30 @@
   </label>
   <input type="submit" value="Search By Tag"/>
 </form>
+
+<% if flash[:notice] || flash[:notice_email] %>
+
+
+<% if flash[:notice].nil? %>
+<form action="/sign_up" method="post" >
+  <label for="user_name">
+    User Name:
+    <input type="text" name="user_name" maxlength="45">
+  </label>
+  <label for="email">
+    Email:
+    <input type="email" name="email" required>
+  </label>
+  <label for="password">
+    Password:
+    <input type="password" name="password">
+  </label>
+  <label for="password_confirmation">
+    Confirm Password:
+    <input type="password" name="password_confirmation">
+  </label>
+  <label for="submit" class="submitform">
+    <input type="submit" value="Sign Up">
+  </label>
+</form>
+<% end %>
