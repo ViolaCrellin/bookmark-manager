@@ -32,7 +32,4 @@ include DataMapper::Resource
   property :password_digest, Text
 
   has n, :links
-  has n, :tags through: Link
-
-
 end
